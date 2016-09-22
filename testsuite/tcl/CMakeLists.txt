@@ -1,5 +1,6 @@
 set(tcl_tests  analysis.tcl
                angle.tcl
+               blockfile.tcl
                bonded_coulomb.tcl
                collision-detection-angular.tcl
                collision-detection-centers.tcl
@@ -83,14 +84,15 @@ set(tcl_tests  analysis.tcl
                p3m_magnetostatics.tcl 
                p3m_magnetostatics2.tcl 
                p3m_simple_noncubic.tcl 
+               p3m_stress_testcase.tcl
                pdb_parser.tcl 
                rotate-system.tcl 
                rotate-system-dipoles.tcl 
                rotation.tcl 
                rotation_per_particle.tcl 
-	       scafacos-dipoles.tcl
-	       scafacos-dipoles-non-periodic.tcl
-	       scafacos-dipoles-1d-and-2d-periodic.tcl
+               scafacos-dipoles.tcl
+               scafacos-dipoles-non-periodic.tcl
+               scafacos-dipoles-1d-and-2d-periodic.tcl
                sc_fluid_gpu.tcl 
                sd_ewald.tcl 
                sd_two_spheres.tcl 
@@ -120,7 +122,6 @@ if(WITH_TCL)
     else()
       add_test(${basename} ${TEST_EXECUTABLE} ${testfile})
     endif()
-    set_tests_properties(${basename} PROPERTIES SKIP_RETURN_CODE 42)
   endforeach(testfile ${tcl_tests})
   add_custom_target(check_tcl COMMAND ${CMAKE_CTEST_COMMAND}
     DEPENDS Espresso tcl_tests)
